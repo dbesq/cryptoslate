@@ -1,3 +1,2456 @@
+====================================================================================================
+PROJECT EXPORT FOR LLMs
+====================================================================================================
+
+PROJECT INFORMATION:
+--------------------------------------------------
+Project Name: cryptoscreen
+Generated On: 2026-01-02 09:04:16 (America/Chicago / GMT-06:00)
+Total Files Processed: 27
+Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
+Tool Author: Jota / José Guilherme Pandolfi
+
+EXPORT CONFIGURATION:
+--------------------------------------------------
+Language: en
+Max File Size: 1 MB
+Include Hidden Files: false
+Output Format: both
+Notification Level: minimal
+Custom File Name Pattern: {workspaceName}-output
+
+================================================================================
+PROJECT STRUCTURE
+================================================================================
+├── 📁 app/
+│   ├── 📄 favicon.ico (25.32 KB)
+│   ├── 📄 globals.css (21.31 KB)
+│   ├── 📄 layout.tsx (798 B)
+│   └── 📄 page.tsx (696 B)
+├── 📁 components/
+│   ├── 📁 home/
+│   │   ├── 📄 CoinOverview.tsx (987 B)
+│   │   ├── 📄 fallback.tsx (2.94 KB)
+│   │   └── 📄 TrendingCoins.tsx (2.08 KB)
+│   ├── 📁 ui/
+│   │   └── 📄 table.tsx (2.5 KB)
+│   ├── 📄 CandlestickChart.tsx (3.61 KB)
+│   ├── 📄 DataTable.tsx (1.65 KB)
+│   └── 📄 Header.tsx (818 B)
+├── 📁 lib/
+│   ├── 📄 coingecko.actions.ts (1.06 KB)
+│   └── 📄 utils.ts (3.23 KB)
+├── 📁 public/
+│   ├── 📄 converter.svg (506 B)
+│   └── 📄 logo.svg (2.83 MB)
+├── 📄 components.json (447 B)
+├── 📄 constants.ts (3.06 KB)
+├── 📄 eslint.config.mjs (465 B)
+├── 📄 next-env.d.ts (251 B)
+├── 📄 next.config.ts (345 B)
+├── 📄 package-lock.json (221.41 KB)
+├── 📄 package.json (793 B)
+├── 📄 postcss.config.mjs (94 B)
+├── 📄 README.md (1.42 KB)
+├── 📄 tsconfig.json (666 B)
+├── 📄 type.d.ts (6.25 KB)
+└── 📄 ZZNotes.txt (124 B)
+
+================================================================================
+PROJECT STATISTICS
+================================================================================
+Total Files: 27
+Total Directories: 6
+Text Files: 22
+Binary Files: 5
+Total Size: 3.13 MB
+
+FILE TYPES DISTRIBUTION:
+------------------------------
+.tsx            : 9
+.ts             : 6
+.json           : 4
+.svg            : 2
+.mjs            : 2
+.ico            : 1
+.css            : 1
+.md             : 1
+.txt            : 1
+
+================================================================================
+FILE CODE CONTENTS
+================================================================================
+
+
+================================================================================
+FILE: app/globals.css
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 21.31 KB
+Extension: .css
+Language: css
+Location: app/globals.css
+Relative Path: app
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: 3f3d88c372d7e45e3a5f11c2bbf8cb0f
+SHA256: 3431c8ee39e04048af4342fa282f2b4d02faeb8a7b24561252ffede26d01fd6e
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Brand colors */
+  --color-dark-900: var(--dark-900);
+  --color-dark-700: var(--dark-700);
+  --color-dark-500: var(--dark-500);
+  --color-dark-400: var(--dark-400);
+  --color-purple-600: var(--purple-600);
+  --color-purple-100: var(--purple-100);
+  --color-green-500: var(--green-500);
+  --color-green-400: var(--green-400);
+  --color-green-300: var(--green-300);
+  --color-red-500: var(--red-500);
+  --color-yellow-500: var(--yellow-500);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  /* Brand colors */
+  --dark-900: #000510;
+  --dark-700: #0f1316;
+  --dark-500: #1a2027;
+  --dark-400: #1e2833;
+
+  --purple-600: #1b254b;
+  --purple-100: #a3aed0;
+
+  --green-500: #76da44;
+  --green-400: #2ebe7b;
+  --green-300: #99e39e;
+
+  --red-500: #ff685f;
+  --yellow-500: #dabe44;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-dark-700 text-foreground;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 sm:px-6 mx-auto max-w-360;
+  }
+
+  .main-container {
+    @apply py-6 md:py-12 mx-auto px-4 sm:px-6 max-w-360 w-full space-y-6 md:space-y-6;
+  }
+
+  .badge {
+    @apply font-medium mt-2 h-fit py-1 flex items-center gap-1;
+  }
+
+  .badge-up {
+    @apply bg-green-600/20! text-green-600!;
+  }
+
+  .badge-down {
+    @apply bg-red-500/20! text-red-500!;
+  }
+
+  .skeleton {
+    @apply bg-dark-400/60;
+  }
+
+  header {
+    @apply border-b border-dark-400 h-20;
+
+    .inner {
+      @apply flex justify-between items-center h-full;
+
+      a {
+        @apply mb-0;
+      }
+
+      nav {
+        @apply flex h-full items-center;
+
+        .nav-link {
+          @apply px-6 py-5 flex items-center transition-all hover:text-white font-medium h-full text-purple-100 cursor-pointer;
+        }
+
+        .nav-link.is-active {
+          @apply text-white;
+        }
+
+        .nav-link.is-home {
+          @apply max-sm:hidden;
+        }
+      }
+    }
+  }
+
+  #candlestick-chart {
+    @apply p-3 mt-5 rounded-lg bg-dark-500;
+
+    .chart-header {
+      @apply flex flex-col gap-3 xl:flex-row xl:items-center mb-4 font-semibold text-[#e6eef8] text-[20px];
+    }
+
+    .button-group {
+      @apply flex gap-1 xl:gap-2 items-center;
+    }
+
+    .config-button {
+      @apply rounded-sm border-0 cursor-pointer px-2.5 py-2 text-xs xl:text-sm text-purple-100 hover:bg-dark-400 hover:text-white;
+    }
+
+    .config-button-active {
+      @apply rounded-sm px-2.5 py-1.5 border-0 cursor-pointer text-sm text-gray-900 bg-green-500;
+    }
+
+    .chart {
+      @apply w-full min-h-50;
+    }
+  }
+
+  #coin-card {
+    @apply bg-dark-500 hover:bg-dark-400/50 transition-all rounded-lg p-5 border border-purple-600/20 hover:border-purple-600/50 cursor-pointer h-fit;
+
+    .header {
+      @apply flex gap-3 mb-4;
+
+      img {
+        @apply size-12 rounded-full;
+      }
+
+      h3 {
+        @apply font-semibold text-lg;
+      }
+
+      p {
+        @apply text-sm text-gray-400 uppercase;
+      }
+    }
+
+    .price-row {
+      @apply flex justify-between items-center mb-5;
+
+      .price {
+        @apply text-xl font-bold;
+      }
+
+      .change {
+        @apply flex items-center gap-2;
+      }
+    }
+
+    .stats {
+      @apply space-y-3;
+
+      .stat-row {
+        @apply flex gap-1 justify-between;
+
+        .label {
+          @apply text-purple-100;
+        }
+
+        .value {
+          @apply font-medium;
+        }
+      }
+    }
+  }
+
+  #categories {
+    @apply pt-8 mt-5 w-full bg-dark-500 rounded-xl overflow-hidden;
+
+    h4 {
+      @apply text-xl md:text-2xl font-semibold mb-2 pl-5;
+    }
+
+    .category-cell {
+      @apply pl-5 font-bold;
+    }
+
+    .top-gainers-cell {
+      @apply flex gap-1 mr-5;
+
+      img {
+        @apply rounded-full py-2;
+      }
+    }
+
+    .change-header-cell {
+      @apply font-medium;
+    }
+
+    .change-cell {
+      @apply flex flex-1 gap-1 items-center pl-2 text-center font-medium;
+    }
+
+    .market-cap-cell {
+      @apply font-medium;
+    }
+
+    .volume-cell {
+      @apply font-medium;
+    }
+  }
+
+  #trending-coins {
+    @apply w-full flex flex-col justify-center h-full py-4 bg-dark-500 rounded-xl;
+
+    h4 {
+      @apply text-xl md:text-2xl font-semibold mb-2 px-5;
+    }
+
+    .trending-coins-table {
+      @apply bg-dark-500 overflow-hidden;
+
+      .name-cell {
+        @apply font-bold;
+
+        a {
+          @apply pl-1 md:pl-2 py-1 md:py-2 xl:py-1 flex items-center gap-2 md:gap-3;
+
+          img {
+            @apply rounded-full size-8 md:size-9;
+          }
+
+          p {
+            @apply text-sm md:text-base;
+          }
+        }
+      }
+
+      .change-cell {
+        @apply font-medium py-4 pr-3 md:pr-5;
+      }
+
+      .price-cell {
+        @apply font-bold pr-5 text-sm max-w-full truncate;
+      }
+
+      .price-change {
+        @apply flex gap-1 items-center text-sm font-medium;
+      }
+    }
+  }
+
+  .home-grid {
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-start lg:items-center gap-6;
+  }
+
+  #categories-fallback {
+    @apply pt-8 mt-5 w-full bg-dark-500 rounded-xl overflow-hidden;
+
+    h4 {
+      @apply text-xl md:text-2xl font-semibold mb-2 pl-5;
+    }
+
+    .category-cell {
+      @apply pl-5 font-bold;
+    }
+
+    .top-gainers-cell {
+      @apply flex gap-1 mr-5;
+    }
+
+    .change-header-cell {
+      @apply font-medium;
+    }
+
+    .change-cell {
+      @apply flex gap-1 items-center pl-2 text-center font-medium;
+    }
+
+    .market-cap-cell {
+      @apply font-medium;
+    }
+
+    .volume-cell {
+      @apply font-medium;
+    }
+
+    .category-skeleton {
+      @apply h-4 w-32;
+    }
+
+    .coin-skeleton {
+      @apply h-7 w-7 rounded-full;
+    }
+
+    .value-skeleton-sm {
+      @apply h-4 w-16;
+    }
+
+    .value-skeleton-md {
+      @apply h-4 w-20;
+    }
+
+    .value-skeleton-lg {
+      @apply h-4 w-24;
+    }
+
+    .change-icon {
+      @apply h-3.5 w-3.5 rounded-full;
+    }
+  }
+
+  #coin-overview-fallback {
+    @apply w-full h-full xl:col-span-2 px-2 bg-dark-500 rounded-xl;
+
+    .header {
+      @apply flex-1 mb-2 flex gap-2 md:gap-3;
+    }
+
+    .header-image {
+      @apply w-10 h-10 md:w-14 md:h-14 rounded-full;
+    }
+
+    .info {
+      @apply flex flex-col gap-2;
+    }
+
+    .header-line-sm {
+      @apply h-3 w-24 md:w-28;
+    }
+
+    .header-line-lg {
+      @apply h-7 w-36 md:w-44;
+    }
+
+    .period-button-skeleton {
+      @apply h-7 w-9 md:w-10 rounded-sm;
+    }
+
+    .chart {
+      @apply h-90;
+    }
+
+    .chart-skeleton {
+      @apply h-full w-full rounded-xl;
+    }
+  }
+
+  #trending-coins-fallback {
+    @apply w-full flex flex-col justify-center h-full py-4 bg-dark-500 rounded-xl;
+
+    h4 {
+      @apply text-xl md:text-2xl font-semibold mb-2 px-5;
+    }
+
+    .trending-coins-table {
+      @apply bg-dark-500 overflow-hidden;
+
+      .name-cell {
+        @apply font-bold;
+      }
+
+      .name-link {
+        @apply pl-1 md:pl-2 py-1 md:py-2 xl:py-1 flex items-center gap-2 md:gap-3;
+      }
+
+      .name-image {
+        @apply rounded-full size-8 md:size-9;
+      }
+
+      .name-line {
+        @apply h-4 w-24;
+      }
+
+      .change-cell {
+        @apply font-medium py-4 pr-3 md:pr-5;
+      }
+
+      .price-cell {
+        @apply font-bold pr-5 text-sm max-w-full truncate;
+      }
+
+      .price-change {
+        @apply flex gap-1 items-center text-sm font-medium;
+      }
+    }
+
+    .change-line {
+      @apply h-4 w-16;
+    }
+
+    .price-line {
+      @apply h-4 w-20;
+    }
+
+    .change-icon {
+      @apply h-3.5 w-3.5 rounded-full;
+    }
+  }
+
+  #coin-details-page {
+    @apply py-12 px-4 sm:px-6 mx-auto max-w-360 size-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center gap-6 xl:gap-10 justify-center;
+
+    .primary {
+      @apply size-full xl:col-span-2;
+    }
+
+    .secondary {
+      @apply size-full max-lg:mt-8 lg:col-span-1;
+    }
+
+    .exchange-section {
+      @apply w-full mt-8 space-y-4;
+
+      h4 {
+        @apply text-xl md:text-2xl font-semibold mb-2;
+      }
+    }
+
+    .exchange-table {
+      @apply bg-dark-500 rounded-xl overflow-hidden mt-5;
+
+      .exchange-name {
+        @apply text-green-500 font-bold;
+
+        a {
+          @apply absolute inset-0 z-10;
+        }
+      }
+
+      .pair {
+        @apply font-medium h-full flex gap-1 py-4 pr-5 space-x-2;
+
+        p {
+          @apply truncate max-w-20 md:max-w-30 h-full;
+        }
+      }
+
+      .price-cell {
+        @apply font-medium;
+      }
+
+      .time-cell {
+        @apply pr-5 text-end;
+      }
+    }
+
+    .details {
+      @apply w-full mt-8 space-y-4;
+
+      h4 {
+        @apply text-xl md:text-2xl font-semibold mb-2 pb-3;
+      }
+
+      .details-grid {
+        @apply rounded-lg grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-3 sm:gap-5;
+
+        li {
+          @apply text-base bg-dark-500 px-5 py-6 rounded-lg flex flex-col gap-3;
+
+          .label {
+            @apply text-purple-100;
+          }
+
+          .link {
+            @apply flex items-center text-green-500 gap-1;
+          }
+        }
+      }
+    }
+  }
+
+  #coins-page {
+    @apply py-12 px-4 sm:px-6 mx-auto max-w-360 size-full items-center gap-10 justify-center;
+
+    .content {
+      @apply flex flex-col w-full space-y-5;
+    }
+
+    h4 {
+      @apply text-2xl;
+    }
+
+    .coins-table {
+      @apply bg-dark-500 rounded-xl max-h-fit overflow-hidden;
+
+      .rank-cell {
+        @apply pl-5 max-w-20! py-5 font-medium text-purple-100;
+
+        a {
+          @apply absolute inset-0 z-10;
+        }
+      }
+
+      .token-cell {
+        @apply py-3 font-semibold;
+
+        .token-info {
+          @apply flex items-center gap-3;
+
+          p {
+            @apply max-w-full truncate;
+          }
+        }
+      }
+
+      .price-cell {
+        @apply py-4 font-medium;
+      }
+
+      .change-cell {
+        @apply font-medium;
+      }
+
+      .change-value {
+        @apply flex gap-1 items-center font-medium;
+      }
+
+      .market-cap-cell {
+        @apply pr-5 font-medium;
+      }
+    }
+  }
+
+  #search-modal {
+    .trigger {
+      @apply px-6 hover:bg-transparent! font-medium transition-all h-full cursor-pointer text-base text-purple-100 flex items-center gap-2;
+    }
+
+    .kbd {
+      @apply pointer-events-none hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100;
+    }
+
+    .dialog {
+      @apply bg-dark-400! max-w-sm sm:max-w-md md:max-w-2xl mx-auto;
+    }
+
+    .cmd-input {
+      @apply bg-dark-500!;
+
+      input {
+        @apply placeholder:text-purple-100!;
+      }
+    }
+
+    .list {
+      @apply bg-dark-500 max-h-100;
+    }
+
+    .heading {
+      @apply flex items-center gap-2 text-purple-100;
+    }
+
+    .group {
+      @apply bg-dark-500 text-purple-100;
+    }
+  }
+
+  .dialog {
+    .empty {
+      @apply py-6 text-center text-sm text-gray-400;
+    }
+
+    .search-item {
+      @apply grid grid-cols-4 gap-4 items-center justify-between data-[selected=true]:bg-dark-400 transition-all !cursor-pointer hover:bg-dark-400 py-3;
+
+      .coin-info {
+        @apply flex gap-4 items-center col-span-2;
+
+        img {
+          @apply size-9 rounded-full;
+        }
+
+        div {
+          @apply flex flex-col;
+        }
+
+        .coin-symbol {
+          @apply text-sm text-purple-100 uppercase;
+        }
+      }
+
+      .coin-price {
+        @apply font-semibold text-sm lg:text-base;
+      }
+
+      .coin-change {
+        @apply flex gap-1 text-sm lg:text-base items-center font-medium;
+      }
+    }
+  }
+
+  #converter {
+    @apply w-full space-y-5;
+
+    h4 {
+      @apply text-2xl font-semibold;
+    }
+
+    .panel {
+      @apply space-y-2 bg-dark-500 px-5 py-7 rounded-lg;
+    }
+
+    .input-wrapper {
+      @apply bg-dark-400 h-12 w-full rounded-md flex items-center justify-between py-4 pr-4;
+
+      .input {
+        @apply flex-1 text-lg! border-none font-medium bg-dark-400! focus-visible:ring-0 shadow-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+      }
+
+      .coin-info {
+        @apply flex items-center gap-1;
+
+        p {
+          @apply font-semibold text-base text-purple-100;
+        }
+      }
+    }
+
+    .divider {
+      @apply relative flex justify-center items-center my-4;
+
+      .line {
+        @apply h-px z-10 w-full bg-dark-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+      }
+
+      .icon {
+        @apply size-8 z-20 bg-dark-400 rounded-full p-2 text-green-500;
+      }
+    }
+
+    .output-wrapper {
+      @apply bg-dark-400 h-12 w-full rounded-md flex items-center justify-between py-4 pl-4;
+
+      p {
+        @apply text-base font-medium;
+      }
+
+      .select-trigger {
+        @apply w-fit! border-none! cursor-pointer! h-12! bg-dark-400! hover:bg-dark-400! focus-visible:ring-0!;
+
+        .select-value {
+          @apply font-semibold! text-xs! text-purple-100!;
+        }
+      }
+
+      .select-content[data-converter] {
+        @apply bg-dark-400 max-h-125;
+
+        .select-item {
+          @apply cursor-pointer hover:bg-dark-500!;
+        }
+      }
+    }
+  }
+
+  #top-gainers-losers {
+    @apply mt-8 w-full;
+
+    .tabs-list {
+      @apply size-full! p-1! bg-transparent! border-b! border-dark-500! rounded-none!;
+    }
+
+    .tabs-trigger {
+      @apply data-[state=active]:border-none! data-[state=active]:bg-transparent! flex justify-start! mb-0! py-2! text-lg! font-semibold! md:text-2xl!;
+    }
+
+    .tabs-content {
+      @apply gap-4! mt-2! md:gap-5! sm:grid-cols-2! lg:grid-cols-1! grid!;
+    }
+  }
+
+  #coin-header {
+    @apply space-y-5 w-full;
+
+    h3 {
+      @apply text-3xl font-medium;
+    }
+
+    .info {
+      @apply flex gap-3 items-center;
+
+      img {
+        @apply size-11.25 sm:size-12.5 xl:size-19.25;
+      }
+    }
+
+    .price-row {
+      @apply flex gap-4;
+
+      h1 {
+        @apply text-3xl sm:text-5xl xl:text-6xl font-semibold;
+      }
+    }
+
+    .stats {
+      @apply grid grid-cols-3 mt-8 gap-4 sm:gap-6 w-fit;
+
+      li {
+        @apply text-base border-r last:border-none border-purple-600 flex flex-col gap-2;
+
+        .label {
+          @apply text-purple-100 max-sm:text-sm;
+        }
+
+        .value {
+          @apply flex gap-1 flex-1 items-end text-base font-medium;
+        }
+      }
+    }
+  }
+
+  #coin-overview {
+    @apply w-full h-full xl:col-span-2 px-2 bg-dark-500 rounded-xl;
+
+    .header {
+      @apply flex-1 mb-2 flex gap-2 md:gap-3;
+
+      img {
+        @apply w-10 h-10 md:w-14 md:h-14;
+      }
+
+      .info {
+        @apply flex flex-col;
+
+        p {
+          @apply flex text-purple-100 text-xs md:text-sm w-fit;
+        }
+
+        h1 {
+          @apply text-xl md:text-2xl font-semibold;
+        }
+      }
+    }
+  }
+
+  #coins-pagination {
+    .pagination-content {
+      @apply flex w-full;
+    }
+
+    .pagination-control {
+      @apply bg-dark-400 rounded-sm py-1;
+
+      &.prev {
+        @apply pr-2;
+      }
+
+      &.next {
+        @apply pl-2;
+      }
+    }
+
+    .control-button {
+      @apply cursor-pointer;
+    }
+
+    .control-disabled {
+      @apply pointer-events-none opacity-50;
+    }
+
+    .pagination-pages {
+      @apply flex flex-1 justify-center gap-2;
+
+      .ellipsis {
+        @apply px-3 py-2 text-base;
+      }
+
+      .page-link {
+        @apply hover:bg-dark-400! rounded-sm text-base cursor-pointer;
+      }
+
+      .page-link-active {
+        @apply bg-green-500! text-dark-900 font-semibold;
+      }
+    }
+  }
+
+  #live-data-wrapper {
+    @apply size-full xl:col-span-2;
+
+    .divider {
+      @apply my-8! bg-purple-600!;
+    }
+
+    .trend {
+      @apply w-full;
+
+      h4 {
+        @apply text-xl md:text-2xl font-semibold mb-2 mt-2 pl-2;
+      }
+    }
+
+    .trades {
+      @apply w-full my-8 space-y-4;
+
+      h4 {
+        @apply text-xl md:text-2xl font-semibold mb-2;
+      }
+    }
+
+    .trades-table {
+      @apply bg-dark-500 mt-5 rounded-xl overflow-hidden;
+
+      .price-cell {
+        @apply pl-5 py-5 font-medium;
+      }
+
+      .amount-cell {
+        @apply py-4 font-medium;
+      }
+
+      .value-cell {
+        @apply font-medium;
+      }
+
+      .type-cell {
+        @apply font-medium;
+      }
+
+      .time-cell {
+        @apply pr-5;
+      }
+    }
+  }
+}
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1e2833;
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #171a34;
+}
+
+/* Table Custom Scrollbar */
+.custom-scrollbar [data-slot='table-container'] {
+  overflow-y: auto;
+}
+
+.custom-scrollbar [data-slot='table-container']::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.custom-scrollbar [data-slot='table-container']::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar [data-slot='table-container']::-webkit-scrollbar-thumb {
+  background: #1e2833;
+  border-radius: 8px;
+}
+
+.custom-scrollbar [data-slot='table-container']::-webkit-scrollbar-thumb:hover {
+  background: #171a34;
+}
+================================================================================
+
+
+================================================================================
+FILE: app/layout.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 798 B
+Extension: .tsx
+Language: typescript
+Location: app/layout.tsx
+Relative Path: app
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: e4928312cdf730b815ff13057682fe97
+SHA256: 49a95bd19c1e913dc857fc831766d9fa83ea6f86ccb3b40752ae8c3ee590a3dc
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import './globals.css'
+import Header from '@/components/Header'
+
+const geistSans = Geist({
+	variable: '--font-geist-sans',
+	subsets: ['latin'],
+})
+
+const geistMono = Geist_Mono({
+	variable: '--font-geist-mono',
+	subsets: ['latin'],
+})
+
+export const metadata: Metadata = {
+	title: 'CryptoSlate',
+	description:
+		'Crypto Screener App with a built-in High-Frequency Terminal and Dashboard',
+}
+
+export default function RootLayout({
+	children,
+}: Readonly<{
+	children: React.ReactNode
+}>) {
+	return (
+		<html lang='en' className='dark'>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				<Header />
+				{children}
+			</body>
+		</html>
+	)
+}
+
+================================================================================
+
+
+================================================================================
+FILE: app/page.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 696 B
+Extension: .tsx
+Language: typescript
+Location: app/page.tsx
+Relative Path: app
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: b9f9daacc5c1d008bd27da4e8ab90e8c
+SHA256: b110841fc31660a2ee262f218514a7705b283474699bba1a025bc52f1a974c28
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import CoinOverview from '@/components/home/CoinOverview'
+import {
+	CoinOverviewFallback,
+	TrendingCoinsFallback,
+} from '@/components/home/fallback'
+import TrendingCoins from '@/components/home/TrendingCoins'
+import { Suspense } from 'react'
+
+const Page = async () => {
+	return (
+		<main className='main-container'>
+			<section className='home-grid'>
+				<Suspense fallback={<CoinOverviewFallback />}>
+					<CoinOverview />
+				</Suspense>
+
+				<Suspense fallback={<TrendingCoinsFallback />}>
+					<TrendingCoins />
+				</Suspense>
+			</section>
+
+			<section className='w-full mt-7 space-y-4'>
+				<p>Categories</p>
+			</section>
+		</main>
+	)
+}
+
+export default Page
+
+================================================================================
+
+
+================================================================================
+BINARY/EXCLUDED FILES (not included in text content)
+================================================================================
+- app/favicon.ico
+
+
+================================================================================
+FILE: components/home/CoinOverview.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 987 B
+Extension: .tsx
+Language: typescript
+Location: components/home/CoinOverview.tsx
+Relative Path: components/home
+Created: 2026-01-02 08:55:52 (America/Chicago / GMT-06:00)
+Modified: 2026-01-02 09:04:15 (America/Chicago / GMT-06:00)
+MD5: 6e17a2b1268869289dbc41cd01987606
+SHA256: 431015d8d7bee7013ed5a47560cf555abf0cf98e7ec196ecc635bcd3c22fe25a
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import Image from 'next/image'
+import { fetcher } from '@/lib/coingecko.actions'
+import { formatCurrency } from '@/lib/utils'
+import CandlestickChart from '../CandlestickChart'
+
+const CoinOverview = async () => {
+	const [coin, coinOHLCData] = await Promise.all([
+		fetcher<CoinDetailsData>('coins/bitcoin'),
+		fetcher<OHLCData[]>('coins/bitcoin/ohlc', {
+			vs_currency: 'usd',
+			days: 1,
+			precision: 'full',
+		}),
+	])
+
+	return (
+		<div id='coin-overview'>
+			<CandlestickChart data={coinOHLCData} coinId='bitcoin'>
+				<div className='header pt-2'>
+					<Image
+						src={coin.image.large}
+						alt={coin.name}
+						width={56}
+						height={56}
+					/>
+					<div className='info'>
+						<p>
+							{coin.name} / {coin.symbol.toUpperCase()}
+						</p>
+						<h1>
+							{formatCurrency(
+								coin.market_data.current_price.usd
+							)}
+						</h1>
+					</div>
+				</div>
+			</CandlestickChart>
+		</div>
+	)
+}
+
+export default CoinOverview
+
+================================================================================
+
+
+================================================================================
+FILE: components/home/fallback.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 2.94 KB
+Extension: .tsx
+Language: typescript
+Location: components/home/fallback.tsx
+Relative Path: components/home
+Created: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: 1646651c58a70a3a4e13c0d5131da881
+SHA256: a4e740928cccc71d57aa8c93f0cd180b7ca887c060d234922e53c4e5517c34d8
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+
+import DataTable from '@/components/DataTable';
+import { cn } from '@/lib/utils';
+
+export const CoinOverviewFallback = () => {
+  return (
+    <div id="coin-overview-fallback">
+      <div className="header pt-2">
+        <div className="header-image skeleton" />
+        <div className="info">
+          <div className="header-line-sm skeleton" />
+          <div className="header-line-lg skeleton" />
+        </div>
+      </div>
+      <div className="chart">
+        <div className="chart-skeleton skeleton" />
+      </div>
+    </div>
+  );
+};
+
+export const TrendingCoinsFallback = () => {
+  const columns = [
+    {
+      header: 'Name',
+      cell: () => (
+        <div className="name-link">
+          <div className="name-image skeleton" />
+          <div className="name-line skeleton" />
+        </div>
+      ),
+    },
+    {
+      header: '24h Change',
+      cell: () => (
+        <div className="price-change">
+          <div className="change-icon skeleton" />
+          <div className="change-line skeleton" />
+        </div>
+      ),
+    },
+    {
+      header: 'Price',
+      cell: () => <div className="price-line skeleton" />,
+    },
+  ];
+
+  const dummyData = Array.from({ length: 6 }, (_, i) => ({ id: i }));
+
+  return (
+    <div id="trending-coins-fallback">
+      <h4>Trending Coins</h4>
+      <DataTable
+        data={dummyData}
+        columns={columns as any}
+        rowKey={(item: any) => item.id}
+        tableClassName="trending-coins-table"
+      />
+    </div>
+  );
+};
+
+export const CategoriesFallback = () => {
+  const columns = [
+    {
+      header: 'Category',
+      cellClassName: 'category-cell',
+      cell: () => <div className="category-line skeleton" />,
+    },
+    {
+      header: 'Top Gainers',
+      cellClassName: 'top-gainers-cell',
+      cell: () => (
+        <div className="flex gap-1">
+          <div className="gainer-image skeleton" />
+          <div className="gainer-image skeleton" />
+          <div className="gainer-image skeleton" />
+        </div>
+      ),
+    },
+    {
+      header: '24h Change',
+      cellClassName: 'change-header-cell',
+      cell: () => (
+        <div className="change-cell">
+          <div className="change-icon skeleton" />
+          <div className="change-line skeleton" />
+        </div>
+      ),
+    },
+    {
+      header: 'Market Cap',
+      cellClassName: 'market-cap-cell',
+      cell: () => <div className="value-skeleton-lg skeleton" />,
+    },
+    {
+      header: '24h Volume',
+      cellClassName: 'volume-cell',
+      cell: () => <div className="value-skeleton-md skeleton" />,
+    },
+  ];
+
+  const dummyData = Array.from({ length: 10 }, (_, i) => ({ id: i }));
+
+  return (
+    <div id="categories-fallback">
+      <h4>Top Categories</h4>
+      <DataTable
+        data={dummyData}
+        columns={columns as any}
+        rowKey={(item: any) => item.id}
+        tableClassName="mt-3"
+      />
+    </div>
+  );
+};
+================================================================================
+
+
+================================================================================
+FILE: components/home/TrendingCoins.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 2.08 KB
+Extension: .tsx
+Language: typescript
+Location: components/home/TrendingCoins.tsx
+Relative Path: components/home
+Created: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: df9f1cefc98941c317dd3a4513c292b1
+SHA256: 36ce189b1230a3f31298ba5f8ab6f4724c83cd6af87c12717df01990c6ed2c27
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import Image from 'next/image'
+import Link from 'next/link'
+
+import DataTable from '@/components/DataTable'
+
+import { fetcher } from '@/lib/coingecko.actions'
+import { cn } from '@/lib/utils'
+import { TrendingDown, TrendingUp } from 'lucide-react'
+import { TrendingCoinsFallback } from './fallback'
+
+const columns: DataTableColumn<TrendingCoin>[] = [
+	{
+		header: 'Name',
+		cellClassName: 'name-cell',
+		cell: (coin) => {
+			const item = coin.item
+			return (
+				<Link href={`/coins/${item.id}`}>
+					<Image
+						src={item.large}
+						alt={item.name}
+						width={36}
+						height={36}
+					/>
+					<p>{item.name}</p>
+				</Link>
+			)
+		},
+	},
+	{
+		header: '24h Change',
+		cellClassName: 'name-cell',
+		cell: (coin) => {
+			const item = coin.item
+			const isTrendingUp = item.data.price_change_percentage_24h.usd > 0
+
+			return (
+				<div
+					className={cn(
+						'price-change',
+						isTrendingUp ? 'text-green-500' : 'text-red-500'
+					)}>
+					<p>
+						{isTrendingUp ? (
+							<TrendingUp width={16} height={16} />
+						) : (
+							<TrendingDown width={16} height={16} />
+						)}
+						{Math.abs(
+							item.data.price_change_percentage_24h.usd
+						).toFixed(2)}
+						%
+					</p>
+				</div>
+			)
+		},
+	},
+	{
+		header: 'Price',
+		cellClassName: 'price-cell',
+		cell: (coin) => coin.item.data.price,
+	},
+]
+
+const TrendingCoins = async () => {
+	let trendingCoins
+
+	try {
+		trendingCoins = await fetcher<{ coins: TrendingCoin[] }>(
+			'/search/trending',
+			undefined,
+			300
+		)	
+	} catch (error) {
+		console.error('Error fetching trending coins')
+		console.error(error)
+		return <TrendingCoinsFallback />
+	}
+
+	return (
+		<div id='trending-coins'>
+			<h4>Trending Coins</h4>
+
+				<DataTable
+					data={trendingCoins.coins.slice(0, 6) || []}
+					columns={columns}
+                    rowKey={(coin) => coin.item.id}
+                    tableClassName='trending-coins-table'
+                    headerCellClassName='py-3!'
+                    bodyCellClassName='py-2!'
+				/>
+
+		</div>
+	)
+}
+
+export default TrendingCoins
+
+================================================================================
+
+
+================================================================================
+FILE: components/ui/table.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 2.5 KB
+Extension: .tsx
+Language: typescript
+Location: components/ui/table.tsx
+Relative Path: components/ui
+Created: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: 1b339aeaa78100603808436dd1ae9fe2
+SHA256: 3499c3195b236768875a5b06ea2a6f8bc91d69c6f11c8c832517289ca2841b25
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+"use client"
+
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+function Table({ className, ...props }: React.ComponentProps<"table">) {
+  return (
+    <div
+      data-slot="table-container"
+      className="relative w-full overflow-x-auto"
+    >
+      <table
+        data-slot="table"
+        className={cn("w-full caption-bottom text-sm", className)}
+        {...props}
+      />
+    </div>
+  )
+}
+
+function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
+  return (
+    <thead
+      data-slot="table-header"
+      className={cn("[&_tr]:border-b", className)}
+      {...props}
+    />
+  )
+}
+
+function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
+  return (
+    <tbody
+      data-slot="table-body"
+      className={cn("[&_tr:last-child]:border-0", className)}
+      {...props}
+    />
+  )
+}
+
+function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
+  return (
+    <tfoot
+      data-slot="table-footer"
+      className={cn(
+        "bg-muted/50 border-t font-medium [&>tr]:last:border-b-0",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+  return (
+    <tr
+      data-slot="table-row"
+      className={cn(
+        "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+  return (
+    <th
+      data-slot="table-head"
+      className={cn(
+        "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+  return (
+    <td
+      data-slot="table-cell"
+      className={cn(
+        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TableCaption({
+  className,
+  ...props
+}: React.ComponentProps<"caption">) {
+  return (
+    <caption
+      data-slot="table-caption"
+      className={cn("text-muted-foreground mt-4 text-sm", className)}
+      {...props}
+    />
+  )
+}
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+}
+
+================================================================================
+
+
+================================================================================
+FILE: components/CandlestickChart.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 3.61 KB
+Extension: .tsx
+Language: typescript
+Location: components/CandlestickChart.tsx
+Relative Path: components
+Created: 2026-01-02 09:01:39 (America/Chicago / GMT-06:00)
+Modified: 2026-01-02 09:03:25 (America/Chicago / GMT-06:00)
+MD5: c735a70cfe6dd1d7591de23be31e8085
+SHA256: e429f619156b8e33a7b0eaf13c2adc6d408bbc6380df870d04850e4666916e4b
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { useEffect, useRef, useState, useTransition } from 'react'
+import { CandlestickSeries, createChart, IChartApi, ISeriesApi } from 'lightweight-charts'
+import { getCandlestickConfig, getChartConfig, PERIOD_BUTTONS, PERIOD_CONFIG } from '@/constants'
+import { fetcher } from '@/lib/coingecko.actions'
+import { convertOHLCData } from '@/lib/utils'
+
+const CandlestickChart = ({
+	children,
+	data,
+	coinId,
+	height = 360,
+	initialPeriod = 'daily',
+}: CandlestickChartProps) => {
+    const chartContainerRef = useRef<HTMLDivElement | null>(null)
+    const chartRef = useRef<IChartApi | null>(null)
+    const candleSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null)
+	
+    const [loading, setLoading] = useState(false)
+	const [period, setPeriod] = useState(initialPeriod)
+    const [ohlcData, setOhlcData] = useState<OHLCData[]>(data ?? [])
+    const [isPending, startTransition] = useTransition()
+
+    const fetchOHLCData = async (selectedPeriod: Period) => {
+        try {
+            setLoading(true)
+            const { days, interval } = PERIOD_CONFIG[selectedPeriod]
+            const newData = await fetcher<OHLCData[]>(`coins/${coinId}/ohlc`, {
+				vs_currency: 'usd',
+				days,
+				interval,
+				precision: 'full',
+			})
+
+            setOhlcData(newData ?? [])
+        } catch (error) {
+            console.error('Failed to fetch OHLC data:')
+            console.error(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+	const handlePeriodChange = (newPeriod: Period) => {
+		if (newPeriod === period) return
+
+		startTransition(async () => {
+            setPeriod(newPeriod)
+            await fetchOHLCData(newPeriod)
+        })
+	}
+
+    useEffect(() => {
+        const container = chartContainerRef.current
+        if(!container) return
+
+        const showTime = ['daily', 'weekly', 'monthly'].includes(period)
+
+        const chart = createChart(container, {
+            ...getChartConfig(height, showTime),
+            width: container.clientWidth
+        })
+
+        const series = chart.addSeries(CandlestickSeries, getCandlestickConfig())
+
+        const convertedToSeconds = ohlcData.map((item) => [
+            Math.floor(item[0]/1000), item[1], item[2], item[3], item[4]
+        ] as OHLCData)
+
+        series.setData(convertOHLCData(convertedToSeconds))
+        chart.timeScale().fitContent()
+
+        chartRef.current = chart
+        candleSeriesRef.current = series
+
+        const observer = new ResizeObserver((entries) => {
+            if(!entries.length) return
+
+            chart.applyOptions({ width: entries[0].contentRect.width })
+        })
+
+        observer.observe(container)
+
+        return () => {
+            observer.disconnect()
+            chart.remove()
+            chartRef.current = null
+            candleSeriesRef.current = null
+        }
+
+    }, [height, ohlcData, period])
+
+	return (
+		<div id='candlestick-chart'>
+			<div className='chart-header'>
+				<div className='flex-1'>{children}</div>
+
+				<div className='button-group'>
+					<span className='text-sm mx-2 font-medium text-purple-100/50'>
+						Period:
+					</span>
+					{PERIOD_BUTTONS.map(({ value, label }) => (
+						<button
+							key={value}
+							className={
+								period === value
+									? 'config-button-active'
+									: 'config-button'
+							}
+							onClick={() => handlePeriodChange(value)}
+							disabled={loading}>
+							{label}
+						</button>
+					))}
+				</div>
+			</div>
+            <div ref={chartContainerRef} className='chart' style={{ height }} />
+		</div>
+	)
+}
+
+export default CandlestickChart
+
+================================================================================
+
+
+================================================================================
+FILE: components/DataTable.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.65 KB
+Extension: .tsx
+Language: typescript
+Location: components/DataTable.tsx
+Relative Path: components
+Created: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: f37ebdadc30d9cf78cd514191c2b21bd
+SHA256: 1ac732b38b3a77d9cc6425d2a4a45d906ab60b809e0cf3649357e2bc9272c5b3
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableFooter,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '@/components/ui/table'
+import { cn } from '@/lib/utils'
+
+const DataTable = <T,>({
+	columns,
+	data,
+	rowKey,
+	tableClassName,
+	headerRowClassName,
+	headerCellClassName,
+	bodyRowClassName,
+	bodyCellClassName,
+	headerClassName,
+}: DataTableProps<T>) => {
+	return (
+		<div>
+			<Table className={cn('custom-scrollbar', tableClassName)}>
+				<TableCaption></TableCaption>
+				<TableHeader className={headerClassName}>
+					<TableRow
+						className={cn(
+							'hover:bg-transparent!',
+							headerRowClassName
+						)}>
+						{columns.map((column, i) => (
+							<TableHead
+								key={i}
+								className={cn(
+									'bg-dark-400 text-purple-100 py-4 first:pl-5 last:pr-5',
+									headerCellClassName,
+									column.headClassName
+								)}>
+								{column.header}
+							</TableHead>
+						))}
+					</TableRow>
+				</TableHeader>
+				<TableBody>
+					{data.map((row, rowIndex) => (
+						<TableRow
+							key={rowKey(row, rowIndex)}
+							className={cn(
+								'overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30! relative',
+								bodyRowClassName
+							)}>
+							{columns.map((column, columnIndex) => (
+								<TableCell
+									key={columnIndex}
+									className={cn(
+										'py-4 first:pl-5 last:pr-5',
+										bodyCellClassName,
+										column.cellClassName
+									)}>
+									{column.cell(row, rowIndex)}
+								</TableCell>
+							))}
+						</TableRow>
+					))}{' '}
+				</TableBody>
+			</Table>
+		</div>
+	)
+}
+
+export default DataTable
+
+================================================================================
+
+
+================================================================================
+FILE: components/Header.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 818 B
+Extension: .tsx
+Language: typescript
+Location: components/Header.tsx
+Relative Path: components
+Created: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: 479857a2c7209f8decf0bf36bebfac25
+SHA256: 850ba43cd7cc1d242368bf3ab82b5f5e0ff490b197d9a0e87f01a3e7b35bf16e
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
+
+const Header = () => {
+	const pathname = usePathname()
+
+	return (
+		<header>
+			<div className='main-container inner'>
+				<Link href='/'>
+					<Image src='/logo.svg' alt='logo' width={132} height={40} />
+				</Link>
+
+				<nav>
+					<Link
+						href='/'
+						className={cn('nav-link', {
+							'is-active': pathname === '/',
+							'is-home': true,
+						})}>
+						Home
+					</Link>
+
+					<p>Search Modal</p>
+
+					<Link
+						href='/coins'
+						className={cn('nav-link', {
+							'is-active': pathname === '/coins',
+						})}>
+						All Coins
+					</Link>
+				</nav>
+			</div>
+		</header>
+	)
+}
+
+export default Header
+
+================================================================================
+
+
+================================================================================
+FILE: lib/coingecko.actions.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.06 KB
+Extension: .ts
+Language: typescript
+Location: lib/coingecko.actions.ts
+Relative Path: lib
+Created: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+Modified: 2026-01-02 08:42:05 (America/Chicago / GMT-06:00)
+MD5: 5ac754b9a170f97ecebbb46eb89871fb
+SHA256: 0ce6963a8d69254823fb42fd0ea721979c29e6f8047f015f7fd6515c7f854b78
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use server'
+
+import qs from "query-string"
+
+const BASE_URL = process.env.COINGECKO_BASE_URL
+const API_KEY = process.env.COINGECKO_API_KEY
+
+if (!BASE_URL) throw new Error('Could not get base url')
+if (!API_KEY) throw new Error('Could not get api key')
+
+export async function fetcher<T>(
+  endpoint: string,
+  params?: QueryParams,
+  revalidate = 60,
+): Promise<T> {
+  const url = qs.stringifyUrl(
+    {
+      url: `${BASE_URL}/${endpoint}`,
+      query: params,
+    },
+    { skipEmptyString: true, skipNull: true },
+  )
+
+  const response = await fetch(url, {
+    headers: {
+      'x-cg-demo-api-key': API_KEY,
+      'Content-Type': 'application/json',
+    } as Record<string, string>,
+    next: { revalidate },
+  })
+
+  if (!response.ok) {
+    const errorBody: CoinGeckoErrorBody = await response.json().catch(() => ({}))
+
+    // Include URL in the error to make debugging 400s easier
+    throw new Error(
+        `API Error: ${response.status} for ${url}: ${JSON.stringify(errorBody)}`,
+      )
+  }
+
+  return response.json() as Promise<T>
+}
+================================================================================
+
+
+================================================================================
+FILE: lib/utils.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 3.23 KB
+Extension: .ts
+Language: typescript
+Location: lib/utils.ts
+Relative Path: lib
+Created: 2025-12-28 09:40:46 (America/Chicago / GMT-06:00)
+Modified: 2026-01-02 08:18:37 (America/Chicago / GMT-06:00)
+MD5: 80ad98e9adef5476356752850a085cb2
+SHA256: efc224804e2cff6ede7e777cd6824505c5fe377256def7fea7b22d9f762e7740
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import { clsx, type ClassValue } from 'clsx';
+import { Time } from 'lightweight-charts';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export function formatCurrency(
+  value: number | null | undefined,
+  digits?: number,
+  currency?: string,
+  showSymbol?: boolean,
+) {
+  if (value === null || value === undefined || isNaN(value)) {
+    return showSymbol !== false ? '$0.00' : '0.00';
+  }
+
+  if (showSymbol === undefined || showSymbol === true) {
+    return value.toLocaleString(undefined, {
+      style: 'currency',
+      currency: currency?.toUpperCase() || 'USD',
+      minimumFractionDigits: digits ?? 2,
+      maximumFractionDigits: digits ?? 2,
+    });
+  }
+  return value.toLocaleString(undefined, {
+    minimumFractionDigits: digits ?? 2,
+    maximumFractionDigits: digits ?? 2,
+  });
+}
+
+export function formatPercentage(change: number | null | undefined): string {
+  if (change === null || change === undefined || isNaN(change)) {
+    return '0.0%';
+  }
+  const formattedChange = change.toFixed(1);
+  return `${formattedChange}%`;
+}
+
+export function trendingClasses(value: number) {
+  const isTrendingUp = value > 0;
+
+  return {
+    textClass: isTrendingUp ? 'text-green-400' : 'text-red-400',
+    bgClass: isTrendingUp ? 'bg-green-500/10' : 'bg-red-500/10',
+    iconClass: isTrendingUp ? 'icon-up' : 'icon-down',
+  };
+}
+
+export function timeAgo(date: string | number | Date): string {
+  const now = new Date();
+  const past = new Date(date);
+  const diff = now.getTime() - past.getTime(); // difference in ms
+
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const weeks = Math.floor(days / 7);
+
+  if (seconds < 60) return 'just now';
+  if (minutes < 60) return `${minutes} min`;
+  if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''}`;
+  if (days < 7) return `${days} day${days > 1 ? 's' : ''}`;
+  if (weeks < 4) return `${weeks} week${weeks > 1 ? 's' : ''}`;
+
+  // Format date as YYYY-MM-DD
+  return past.toISOString().split('T')[0];
+}
+
+export function convertOHLCData(data: OHLCData[]) {
+  return data
+    .map((d) => ({
+      time: d[0] as Time, // ensure seconds, not ms
+      open: d[1],
+      high: d[2],
+      low: d[3],
+      close: d[4],
+    }))
+    .filter((item, index, arr) => index === 0 || item.time !== arr[index - 1].time);
+}
+
+export const ELLIPSIS = 'ellipsis' as const;
+export const buildPageNumbers = (
+  currentPage: number,
+  totalPages: number,
+): (number | typeof ELLIPSIS)[] => {
+  const MAX_VISIBLE_PAGES = 5;
+
+  const pages: (number | typeof ELLIPSIS)[] = [];
+
+  if (totalPages <= MAX_VISIBLE_PAGES) {
+    for (let i = 1; i <= totalPages; i += 1) {
+      pages.push(i);
+    }
+    return pages;
+  }
+
+  pages.push(1);
+
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+
+  if (start > 2) {
+    pages.push(ELLIPSIS);
+  }
+
+  for (let i = start; i <= end; i += 1) {
+    pages.push(i);
+  }
+
+  if (end < totalPages - 1) {
+    pages.push(ELLIPSIS);
+  }
+
+  pages.push(totalPages);
+
+  return pages;
+};
+================================================================================
+
+
+================================================================================
+BINARY/EXCLUDED FILES (not included in text content)
+================================================================================
+- public/converter.svg
+- public/logo.svg
+
+
+================================================================================
+FILE: components.json
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 447 B
+Extension: .json
+Language: json
+Location: components.json
+Relative Path: root
+Created: 2025-12-28 09:40:40 (America/Chicago / GMT-06:00)
+Modified: 2025-12-28 09:40:40 (America/Chicago / GMT-06:00)
+MD5: e2ba02b1cfc7f5f85ec3e27da1ead567
+SHA256: 69e0b1e4d27fca1f17d46aa44d3c3e8ced350ada2f03e60f75723fe868851262
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {}
+}
+
+================================================================================
+
+
+================================================================================
+FILE: constants.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 3.06 KB
+Extension: .ts
+Language: typescript
+Location: constants.ts
+Relative Path: root
+Created: 2026-01-01 08:16:57 (America/Chicago / GMT-06:00)
+Modified: 2026-01-01 08:18:31 (America/Chicago / GMT-06:00)
+MD5: 345d0ab47224cad37cc8d84854922880
+SHA256: 4e29d85be32182ffb4ef9cd960465c18f34bad460499bf95d87efb6ec1b0e815
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import {
+    CandlestickSeriesPartialOptions,
+    ChartOptions,
+    ColorType,
+    DeepPartial,
+  } from 'lightweight-charts';
+  
+  export const navItems = [
+    {
+      label: 'Home',
+      href: '/',
+    },
+    {
+      label: 'Search',
+      href: '/',
+    },
+    {
+      label: 'All Coins',
+      href: '/coins',
+    },
+  ];
+  
+  const CHART_COLORS = {
+    background: '#0b1116',
+    text: '#8f9fb1',
+    grid: '#1a2332',
+    border: '#1a2332',
+    crosshairVertical: '#ffffff40',
+    crosshairHorizontal: '#ffffff20',
+    candleUp: '#158A6E',
+    candleDown: '#EB1C36',
+  } as const;
+  
+  export const getCandlestickConfig = (): CandlestickSeriesPartialOptions => ({
+    upColor: CHART_COLORS.candleUp,
+    downColor: CHART_COLORS.candleDown,
+    wickUpColor: CHART_COLORS.candleUp,
+    wickDownColor: CHART_COLORS.candleDown,
+    borderVisible: true,
+    wickVisible: true,
+  });
+  
+  export const getChartConfig = (
+    height: number,
+    timeVisible: boolean = true,
+  ): DeepPartial<ChartOptions> => ({
+    width: 0,
+    height,
+    layout: {
+      background: { type: ColorType.Solid, color: CHART_COLORS.background },
+      textColor: CHART_COLORS.text,
+      fontSize: 12,
+      fontFamily: 'Inter, Roboto, "Helvetica Neue", Arial',
+    },
+    grid: {
+      vertLines: { visible: false },
+      horzLines: {
+        visible: true,
+        color: CHART_COLORS.grid,
+        style: 2,
+      },
+    },
+    rightPriceScale: {
+      borderColor: CHART_COLORS.border,
+    },
+    timeScale: {
+      borderColor: CHART_COLORS.border,
+      timeVisible,
+      secondsVisible: false,
+    },
+    handleScroll: true,
+    handleScale: true,
+    crosshair: {
+      mode: 1,
+      vertLine: {
+        visible: true,
+        color: CHART_COLORS.crosshairVertical,
+        width: 1,
+        style: 0,
+      },
+      horzLine: {
+        visible: true,
+        color: CHART_COLORS.crosshairHorizontal,
+        width: 1,
+        style: 0,
+      },
+    },
+    localization: {
+      priceFormatter: (price: number) =>
+        '$' + price.toLocaleString(undefined, { maximumFractionDigits: 2 }),
+    },
+  });
+  
+  export const PERIOD_CONFIG: Record<
+    Period,
+    { days: number | string; interval?: 'hourly' | 'daily' }
+  > = {
+    daily: { days: 1, interval: 'hourly' },
+    weekly: { days: 7, interval: 'hourly' },
+    monthly: { days: 30, interval: 'hourly' },
+    '3months': { days: 90, interval: 'daily' },
+    '6months': { days: 180, interval: 'daily' },
+    yearly: { days: 365 },
+    max: { days: 'max' },
+  };
+  
+  export const PERIOD_BUTTONS: { value: Period; label: string }[] = [
+    { value: 'daily', label: '1D' },
+    { value: 'weekly', label: '1W' },
+    { value: 'monthly', label: '1M' },
+    { value: '3months', label: '3M' },
+    { value: '6months', label: '6M' },
+    { value: 'yearly', label: '1Y' },
+    { value: 'max', label: 'Max' },
+  ];
+  
+  export const LIVE_INTERVAL_BUTTONS: { value: '1s' | '1m'; label: string }[] = [
+    { value: '1s', label: '1s' },
+    { value: '1m', label: '1m' },
+  ];
+================================================================================
+
+
+================================================================================
+FILE: next-env.d.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 251 B
+Extension: .ts
+Language: typescript
+Location: next-env.d.ts
+Relative Path: root
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-28 09:40:55 (America/Chicago / GMT-06:00)
+MD5: d0f8375ae1199dc7acd3977fc33b78b8
+SHA256: 7ad303e40d4fddf44f156129e397511953a71481c5cfd86b1862649aaaf240cc
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+import "./.next/dev/types/routes.d.ts";
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+================================================================================
+
+
+================================================================================
+FILE: next.config.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 345 B
+Extension: .ts
+Language: typescript
+Location: next.config.ts
+Relative Path: root
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+MD5: f673e30b330d7d43a5121fc29825e42f
+SHA256: 4f5f1596f3e419acdf28f76551d027ce82ac386756de13d88e151b252d6af7c0
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.coingecko.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '"coin-images.coingecko.com',
+      },
+    ]
+  }
+};
+
+export default nextConfig;
+
+================================================================================
+
+
+================================================================================
+FILE: package-lock.json
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 221.41 KB
+Extension: .json
+Language: json
+Location: package-lock.json
+Relative Path: root
+Created: 2025-12-28 09:39:40 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:06:16 (America/Chicago / GMT-06:00)
+MD5: 8c966e86635a9582a13d9e63d47728a4
+SHA256: 2ea2339d816b3800c98ea9dafb91f5e19991deef826ae552e8f7d4e3316feaf6
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
 {
   "name": "cryptoscreen",
   "version": "0.1.0",
@@ -6222,3 +8675,554 @@
     }
   }
 }
+
+================================================================================
+
+
+================================================================================
+FILE: package.json
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 793 B
+Extension: .json
+Language: json
+Location: package.json
+Relative Path: root
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 23:06:16 (America/Chicago / GMT-06:00)
+MD5: 0c9e9b48af3a0bf632b484c9f674e9b2
+SHA256: a10d33189f2ccf2b4599289a43c014755bc1482205258eace0421a8bb9400260
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+{
+  "name": "cryptoscreen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lightweight-charts": "^5.1.0",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.1",
+    "query-string": "^9.3.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5"
+  }
+}
+
+================================================================================
+
+
+================================================================================
+FILE: README.md
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.42 KB
+Extension: .md
+Language: text
+Location: README.md
+Relative Path: root
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-28 09:39:15 (America/Chicago / GMT-06:00)
+MD5: f15aaa42d5d299d091b1171097ea56ad
+SHA256: 60b55ff7df79af72590f9524208e46642bc32bdc175cdad41349681c0e2f958f
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+================================================================================
+
+
+================================================================================
+FILE: tsconfig.json
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 666 B
+Extension: .json
+Language: json
+Location: tsconfig.json
+Relative Path: root
+Created: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+Modified: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
+MD5: 02fc19ad21338c2ab820a70136310db4
+SHA256: be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+
+================================================================================
+
+
+================================================================================
+FILE: type.d.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 6.25 KB
+Extension: .ts
+Language: typescript
+Location: type.d.ts
+Relative Path: root
+Created: 2026-01-02 08:55:22 (America/Chicago / GMT-06:00)
+Modified: 2026-01-02 08:55:22 (America/Chicago / GMT-06:00)
+MD5: 597285d160d56eff2a5fe1435117d90b
+SHA256: d1522decc5476e2e635aa26e9d4a6075c1af1b08a55c83703f62332b31de8587
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+type OHLCData = [number, number, number, number, number];
+
+interface NextPageProps {
+  params: Promise<{ [key: string]: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+interface CandlestickChartProps {
+  data?: OHLCData[];
+  liveOhlcv?: OHLCData | null;
+  coinId: string;
+  height?: number;
+  children?: React.ReactNode;
+  mode?: 'historical' | 'live';
+  initialPeriod?: Period;
+  liveInterval?: '1s' | '1m';
+  setLiveInterval?: (interval: '1s' | '1m') => void;
+}
+
+interface ConverterProps {
+  symbol: string;
+  icon: string;
+  priceList: Record<string, number>;
+}
+
+interface Ticker {
+  market: {
+    name: string;
+  };
+  base: string;
+  target: string;
+  converted_last: {
+    usd: number;
+  };
+  timestamp: string;
+  trade_url: string;
+}
+
+type Period = 'daily' | 'weekly' | 'monthly' | '3months' | '6months' | 'yearly' | 'max';
+
+interface CoinMarketData {
+  id: string;
+  symbol: string;
+  name: string;
+  image: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_rank: number;
+  fully_diluted_valuation: number;
+  total_volume: number;
+  high_24h: number;
+  low_24h: number;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  ath: number;
+  ath_change_percentage: number;
+  ath_date: string;
+  atl: number;
+  atl_change_percentage: number;
+  atl_date: string;
+  last_updated: string;
+}
+
+interface TrendingCoin {
+  item: {
+    id: string;
+    name: string;
+    symbol: string;
+    market_cap_rank: number;
+    thumb: string;
+    large: string;
+    data: {
+      price: number;
+      price_change_percentage_24h: {
+        usd: number;
+      };
+    };
+  };
+}
+
+interface SearchCoin {
+  id: string;
+  name: string;
+  symbol: string;
+  market_cap_rank: number | null;
+  thumb: string;
+  large: string;
+  data: {
+    price?: number;
+    price_change_percentage_24h: number;
+  };
+}
+
+// Chart Section Props (used in ChartSection.tsx)
+interface ChartSectionProps {
+  coinData: {
+    image: { large: string };
+    name: string;
+    symbol: string;
+    market_data: {
+      current_price: { usd: number };
+    };
+  };
+  coinOHLCData: OHLCData[];
+  coinId: string;
+}
+
+interface TopGainersLosers {
+  id: string;
+  name: string;
+  symbol: string;
+  image: string;
+  price: number;
+  priceChangePercentage24h: number;
+}
+
+interface TopGainersLosersResponse {
+  id: string;
+  name: string;
+  symbol: string;
+  image: string;
+  usd: number;
+  usd_24h_change: number;
+  usd_24h_vol: number;
+  market_cap_rank: number;
+}
+
+interface PriceData {
+  usd: number;
+}
+
+interface Trade {
+  price?: number;
+  timestamp?: number;
+  type?: string;
+  amount?: number;
+  value?: number;
+}
+
+interface ExtendedPriceData {
+  usd: number;
+  coin?: string;
+  price?: number;
+  change24h?: number;
+  marketCap?: number;
+  volume24h?: number;
+  timestamp?: number;
+}
+
+interface WebSocketMessage {
+  type?: string;
+  c?: string;
+  ch?: string;
+  i?: string;
+  p?: number;
+  pp?: number;
+  pu?: number;
+  m?: number;
+  v?: number;
+  vo?: number;
+  o?: number;
+  h?: number;
+  l?: number;
+  t?: number;
+  to?: number;
+  ty?: string;
+  channel?: string;
+  identifier?: string;
+}
+
+interface CoinDetailsData {
+  id: string;
+  name: string;
+  symbol: string;
+  asset_platform_id?: string | null;
+  detail_platforms?: Record<
+    string,
+    {
+      geckoterminal_url: string;
+      contract_address: string;
+    }
+  >;
+  image: {
+    large: string;
+    small: string;
+  };
+  market_data: {
+    current_price: {
+      usd: number;
+      [key: string]: number;
+    };
+    price_change_24h_in_currency: {
+      usd: number;
+    };
+    price_change_percentage_24h_in_currency: {
+      usd: number;
+    };
+    price_change_percentage_30d_in_currency: {
+      usd: number;
+    };
+    market_cap: {
+      usd: number;
+    };
+    total_volume: {
+      usd: number;
+    };
+  };
+  market_cap_rank: number;
+  description: {
+    en: string;
+  };
+  links: {
+    homepage: string[];
+    blockchain_site: string[];
+    subreddit_url: string;
+  };
+  tickers: Ticker[];
+}
+
+interface LiveDataProps {
+  coinId: string;
+  poolId: string;
+  coin: CoinDetailsData;
+  coinOHLCData?: OHLCData[];
+  children?: React.ReactNode;
+}
+
+interface LiveCoinHeaderProps {
+  name: string;
+  image: string;
+  livePrice?: number;
+  livePriceChangePercentage24h: number;
+  priceChangePercentage30d: number;
+  priceChange24h: number;
+}
+
+interface Category {
+  name: string;
+  top_3_coins: string[];
+  market_cap_change_24h: number;
+  market_cap: number;
+  volume_24h: number;
+}
+
+interface UseCoinGeckoWebSocketProps {
+  coinId: string;
+  poolId: string;
+  liveInterval?: '1s' | '1m';
+}
+
+interface UseCoinGeckoWebSocketReturn {
+  price: ExtendedPriceData | null;
+  trades: Trade[];
+  ohlcv: OHLCData | null;
+  isConnected: boolean;
+}
+
+interface DataTableColumn<T> {
+  header: React.ReactNode;
+  cell: (row: T, index: number) => React.ReactNode;
+  headClassName?: string;
+  cellClassName?: string;
+}
+
+interface DataTableProps<T> {
+  columns: DataTableColumn<T>[];
+  data: T[];
+  rowKey: (row: T, index: number) => React.Key;
+  tableClassName?: string;
+  headerClassName?: string;
+  headerRowClassName?: string;
+  headerCellClassName?: string;
+  bodyRowClassName?: string;
+  bodyCellClassName?: string;
+}
+
+type ButtonSize = 'default' | 'sm' | 'lg' | 'icon' | 'icon-sm' | 'icon-lg';
+
+type PaginationLinkProps = {
+  isActive?: boolean;
+  size?: ButtonSize;
+} & React.ComponentProps<'a'>;
+
+interface Pagination {
+  currentPage: number;
+  totalPages: number;
+  hasMorePages: boolean;
+}
+
+interface HeaderProps {
+  trendingCoins: TrendingCoin[];
+}
+
+type SearchItemCoin = SearchCoin | TrendingCoin['item'];
+
+interface SearchItemProps {
+  coin: SearchItemCoin;
+  onSelect: (coinId: string) => void;
+  isActiveName: boolean;
+}
+
+interface CoinGeckoErrorBody {
+  error?: string;
+}
+
+type QueryParams = Record<string, string | number | boolean | undefined>;
+
+interface PoolData {
+  id: string;
+  address: string;
+  name: string;
+  network: string;
+}
+================================================================================
+
+
+================================================================================
+FILE: ZZNotes.txt
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 124 B
+Extension: .txt
+Language: text
+Location: ZZNotes.txt
+Relative Path: root
+Created: 2025-12-28 09:49:09 (America/Chicago / GMT-06:00)
+Modified: 2025-12-31 08:29:32 (America/Chicago / GMT-06:00)
+MD5: c2be52a16448203cac179d7285e5a1bf
+SHA256: 273efd2b7a8c5b299ab68275924fc5c153bbd67d28114b0146c9c3758bd380d8
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+https://www.youtube.com/watch?v=-vsh_GxC-vg&t=403s
+1.08.55
+
+
+Coingecko
+dbesqdev
+API Key: CG-5T17sTwPqzPLV9B1b2m9dEhf
+
+================================================================================
+
+
+================================================================================
+BINARY/EXCLUDED FILES (not included in text content)
+================================================================================
+- eslint.config.mjs
+- postcss.config.mjs
