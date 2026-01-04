@@ -22,7 +22,7 @@ const columns: DataTableColumn<TrendingCoin>[] = [
 						width={36}
 						height={36}
 					/>
-					<p>{item.name}</p>
+					<p className='text-sm'>{item.name}</p>
 				</Link>
 			)
 		},
