@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `cryptoscreen`
-- **Generated On**: 2026-01-02 09:04:16 (America/Chicago / GMT-06:00)
-- **Total Files Processed**: 27
+- **Generated On**: 2026-01-04 08:45:40 (America/Chicago / GMT-06:00)
+- **Total Files Processed**: 32
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -21,18 +21,24 @@
 
 ```
 ├── 📁 app/
+│   ├── 📁 coins/
+│   │   └── 📄 page.tsx (2.57 KB)
 │   ├── 📄 favicon.ico (25.32 KB)
 │   ├── 📄 globals.css (21.31 KB)
 │   ├── 📄 layout.tsx (798 B)
-│   └── 📄 page.tsx (696 B)
+│   └── 📄 page.tsx (838 B)
 ├── 📁 components/
 │   ├── 📁 home/
+│   │   ├── 📄 Categories.tsx (2.27 KB)
 │   │   ├── 📄 CoinOverview.tsx (987 B)
 │   │   ├── 📄 fallback.tsx (2.94 KB)
-│   │   └── 📄 TrendingCoins.tsx (2.08 KB)
+│   │   └── 📄 TrendingCoins.tsx (2.1 KB)
 │   ├── 📁 ui/
+│   │   ├── 📄 button.tsx (2.17 KB)
+│   │   ├── 📄 pagination.tsx (2.65 KB)
 │   │   └── 📄 table.tsx (2.5 KB)
 │   ├── 📄 CandlestickChart.tsx (3.61 KB)
+│   ├── 📄 CoinsPagination.tsx (2.09 KB)
 │   ├── 📄 DataTable.tsx (1.65 KB)
 │   └── 📄 Header.tsx (818 B)
 ├── 📁 lib/
@@ -46,27 +52,32 @@
 ├── 📄 eslint.config.mjs (465 B)
 ├── 📄 next-env.d.ts (251 B)
 ├── 📄 next.config.ts (345 B)
-├── 📄 package-lock.json (221.41 KB)
-├── 📄 package.json (793 B)
+├── 📄 package-lock.json (222.62 KB)
+├── 📄 package.json (832 B)
 ├── 📄 postcss.config.mjs (94 B)
 ├── 📄 README.md (1.42 KB)
 ├── 📄 tsconfig.json (666 B)
 ├── 📄 type.d.ts (6.25 KB)
-└── 📄 ZZNotes.txt (124 B)
+└── 📄 ZZNotes.txt (251 B)
 ```
 
 ## 📑 Table of Contents
 
 **Project Files:**
 
+- [📄 app/coins/page.tsx](#📄-app-coins-page-tsx)
 - [📄 app/globals.css](#📄-app-globals-css)
 - [📄 app/layout.tsx](#📄-app-layout-tsx)
 - [📄 app/page.tsx](#📄-app-page-tsx)
+- [📄 components/home/Categories.tsx](#📄-components-home-categories-tsx)
 - [📄 components/home/CoinOverview.tsx](#📄-components-home-coinoverview-tsx)
 - [📄 components/home/fallback.tsx](#📄-components-home-fallback-tsx)
 - [📄 components/home/TrendingCoins.tsx](#📄-components-home-trendingcoins-tsx)
+- [📄 components/ui/button.tsx](#📄-components-ui-button-tsx)
+- [📄 components/ui/pagination.tsx](#📄-components-ui-pagination-tsx)
 - [📄 components/ui/table.tsx](#📄-components-ui-table-tsx)
 - [📄 components/CandlestickChart.tsx](#📄-components-candlestickchart-tsx)
+- [📄 components/CoinsPagination.tsx](#📄-components-coinspagination-tsx)
 - [📄 components/DataTable.tsx](#📄-components-datatable-tsx)
 - [📄 components/Header.tsx](#📄-components-header-tsx)
 - [📄 lib/coingecko.actions.ts](#📄-lib-coingecko-actions-ts)
@@ -88,17 +99,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 27 |
-| Total Directories | 6 |
-| Text Files | 22 |
+| Total Files | 32 |
+| Total Directories | 7 |
+| Text Files | 27 |
 | Binary Files | 5 |
-| Total Size | 3.13 MB |
+| Total Size | 3.14 MB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 9 |
+| `.tsx` | 14 |
 | `.ts` | 6 |
 | `.json` | 4 |
 | `.svg` | 2 |
@@ -110,6 +121,138 @@
 
 ## 💻 File Code Contents
 
+### <a id="📄-app-coins-page-tsx"></a>📄 `app/coins/page.tsx`
+
+**File Info:**
+- **Size**: 2.57 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `app/coins/page.tsx`
+- **Relative Path**: `app/coins`
+- **Created**: 2026-01-04 07:52:15 (America/Chicago / GMT-06:00)
+- **Modified**: 2026-01-04 08:28:46 (America/Chicago / GMT-06:00)
+- **MD5**: `4a8f81fb78d79d9009f0826481107bb8`
+- **SHA256**: `847b8d219ec9a9b0002fd86fffbe5117ceed4fc71595f206b86f24e8e872bfbc`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import Image from 'next/image'
+import Link from 'next/link'
+
+import DataTable from '@/components/DataTable'
+import CoinsPagination from '@/components/CoinsPagination' 
+
+import { fetcher } from '@/lib/coingecko.actions'
+
+import { cn, formatCurrency, formatPercentage } from '@/lib/utils'
+
+const Coins = async ({ searchParams }: NextPageProps) => {
+    const { page } = await searchParams
+
+    const currentPage = Number(page) || 1
+    const perPage = 10
+
+	const coinsData = await fetcher<CoinMarketData[]>('/coins/markets', {
+		vs_currency: 'usd',
+		order: 'market_cap_desc',
+        per_page: perPage,
+        page: currentPage,
+		sparkline: 'false',
+		price_change_percentage: '24h',
+	})
+
+	const columns: DataTableColumn<CoinMarketData>[] = [
+		{
+			header: 'Rank',
+			cellClassName: 'rank-cell',
+			cell: (coin) => (
+				<>
+					#{coin.market_cap_rank}
+					<Link href={`/coins/${coin.id}`} aria-label='View coin' />
+				</>
+			),
+		},
+		{
+			header: 'Token',
+			cellClassName: 'token-cell',
+			cell: (coin) => (
+				<div className='token-info'>
+					<Image
+						src={coin.image}
+						alt={coin.name}
+						width={36}
+						height={36}
+					/>
+					<p>
+						{coin.name} ({coin.symbol.toUpperCase()})
+					</p>
+				</div>
+			),
+		},
+		{
+			header: 'Price',
+			cellClassName: 'price-cell',
+			cell: (coin) => formatCurrency(coin.current_price),
+		},
+		{
+			header: '24h Change',
+			cellClassName: 'change-cell',
+			cell: (coin) => {
+				const isTrendingUp = coin.price_change_percentage_24h > 0
+
+				return (
+					<span
+						className={cn('change-value', {
+							'text-green-600': isTrendingUp,
+							'text-red-500': !isTrendingUp,
+						})}>
+						{isTrendingUp && '+'}
+						{formatPercentage(coin.price_change_percentage_24h)}
+					</span>
+				)
+			},
+		},
+		{
+			header: 'Market Cap',
+			cellClassName: 'market-cap-cell',
+			cell: (coin) => formatCurrency(coin.market_cap),
+		},
+	]
+
+    const hasMorePages = coinsData.length === perPage 
+
+    const estimatedTotalPages = currentPage >= 100 ? Math.ceil(currentPage / 100) * 100 + 100 : 100
+
+	return (
+		<main id='coins-page'>
+			<div className='content'>
+				<h4>All Coins</h4>
+
+				<DataTable
+					tableClassName='coins-table'
+					columns={columns}
+					data={coinsData}
+					rowKey={(coin) => coin.id}
+				/>
+
+                <CoinsPagination
+                    currentPage={currentPage}
+                    totalPages={estimatedTotalPages}
+                    hasMorePages={hasMorePages}
+                />
+			</div>
+		</main>
+	)
+}
+
+export default Coins
+
+```
+
+---
+
 ### <a id="📄-app-globals-css"></a>📄 `app/globals.css`
 
 **File Info:**
@@ -119,7 +262,7 @@
 - **Location**: `app/globals.css`
 - **Relative Path**: `app`
 - **Created**: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
-- **Modified**: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
+- **Modified**: 2026-01-03 09:12:01 (America/Chicago / GMT-06:00)
 - **MD5**: `3f3d88c372d7e45e3a5f11c2bbf8cb0f`
 - **SHA256**: `3431c8ee39e04048af4342fa282f2b4d02faeb8a7b24561252ffede26d01fd6e`
 - **Encoding**: ASCII
@@ -1161,22 +1304,24 @@ export default function RootLayout({
 ### <a id="📄-app-page-tsx"></a>📄 `app/page.tsx`
 
 **File Info:**
-- **Size**: 696 B
+- **Size**: 838 B
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `app/page.tsx`
 - **Relative Path**: `app`
 - **Created**: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
-- **Modified**: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
-- **MD5**: `b9f9daacc5c1d008bd27da4e8ab90e8c`
-- **SHA256**: `b110841fc31660a2ee262f218514a7705b283474699bba1a025bc52f1a974c28`
+- **Modified**: 2026-01-03 09:04:05 (America/Chicago / GMT-06:00)
+- **MD5**: `a2c9895fb35a6f7f4802e0c78586bdce`
+- **SHA256**: `0f9342e41aba37f71c513eba45a760b8686a7eaacb5f4d5ad812d497c43cfd56`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```typescript
+import Categories from '@/components/home/Categories'
 import CoinOverview from '@/components/home/CoinOverview'
 import {
+	CategoriesFallback,
 	CoinOverviewFallback,
 	TrendingCoinsFallback,
 } from '@/components/home/fallback'
@@ -1197,7 +1342,9 @@ const Page = async () => {
 			</section>
 
 			<section className='w-full mt-7 space-y-4'>
-				<p>Categories</p>
+				<Suspense fallback={<CategoriesFallback />}>
+					<Categories />
+				</Suspense>
 			</section>
 		</main>
 	)
@@ -1214,6 +1361,99 @@ export default Page
 The following files were not included in the text content:
 
 - `app/favicon.ico`
+
+### <a id="📄-components-home-categories-tsx"></a>📄 `components/home/Categories.tsx`
+
+**File Info:**
+- **Size**: 2.27 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `components/home/Categories.tsx`
+- **Relative Path**: `components/home`
+- **Created**: 2026-01-03 00:08:20 (America/Chicago / GMT-06:00)
+- **Modified**: 2026-01-03 08:57:38 (America/Chicago / GMT-06:00)
+- **MD5**: `92ffc0927c4aa94213eb2e053207721e`
+- **SHA256**: `c44f55a6347a71cf3447b5d00c3857d7e201d24b18cd2a44751374d4d2274b2f`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { fetcher } from '@/lib/coingecko.actions';
+import DataTable from '@/components/DataTable';
+import Image from 'next/image';
+import { cn, formatCurrency, formatPercentage } from '@/lib/utils';
+import { TrendingDown, TrendingUp } from 'lucide-react';
+import { CategoriesFallback } from './fallback';
+
+const Categories = async () => {
+  try {
+    const categories = await fetcher<Category[]>('/coins/categories');
+
+    const columns: DataTableColumn<Category>[] = [
+      { header: 'Category', cellClassName: 'category-cell', cell: (category) => category.name },
+      {
+        header: 'Top Gainers',
+        cellClassName: 'top-gainers-cell',
+        cell: (category) =>
+          category.top_3_coins.map((coin) => (
+            <Image src={coin} alt={coin} key={coin} width={28} height={28} />
+          )),
+      },
+      {
+        header: '24h Change',
+        cellClassName: 'change-header-cell',
+        cell: (category) => {
+          const isTrendingUp = category.market_cap_change_24h > 0;
+
+          return (
+            <div className={cn('change-cell', isTrendingUp ? 'text-green-500' : 'text-red-500')}>
+              <p className="flex items-center">
+                {formatPercentage(category.market_cap_change_24h)}
+                {isTrendingUp ? (
+                  <TrendingUp width={16} height={16} />
+                ) : (
+                  <TrendingDown width={16} height={16} />
+                )}
+              </p>
+            </div>
+          );
+        },
+      },
+      {
+        header: 'Market Cap',
+        cellClassName: 'market-cap-cell',
+        cell: (category) => formatCurrency(category.market_cap),
+      },
+      {
+        header: '24h Volume',
+        cellClassName: 'volume-cell',
+        cell: (category) => formatCurrency(category.volume_24h),
+      },
+    ];
+
+    return (
+      <div id="categories" className="custom-scrollbar">
+        <h4>Top Categories</h4>
+
+        <DataTable
+          columns={columns}
+          data={categories?.slice(0, 10)}
+          rowKey={(_, index) => index}
+          tableClassName="mt-3"
+        />
+      </div>
+    );
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return <CategoriesFallback />;
+  }
+};
+
+export default Categories;
+```
+
+---
 
 ### <a id="📄-components-home-coinoverview-tsx"></a>📄 `components/home/CoinOverview.tsx`
 
@@ -1420,15 +1660,15 @@ export const CategoriesFallback = () => {
 ### <a id="📄-components-home-trendingcoins-tsx"></a>📄 `components/home/TrendingCoins.tsx`
 
 **File Info:**
-- **Size**: 2.08 KB
+- **Size**: 2.1 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `components/home/TrendingCoins.tsx`
 - **Relative Path**: `components/home`
 - **Created**: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
-- **Modified**: 2025-12-31 23:04:10 (America/Chicago / GMT-06:00)
-- **MD5**: `df9f1cefc98941c317dd3a4513c292b1`
-- **SHA256**: `36ce189b1230a3f31298ba5f8ab6f4724c83cd6af87c12717df01990c6ed2c27`
+- **Modified**: 2026-01-03 09:09:24 (America/Chicago / GMT-06:00)
+- **MD5**: `bdaa5b980c276191f686c05dd5e58203`
+- **SHA256**: `0be8df6f21379a1781c49c5a7304464287d3a2c1ef546a62fcaa5530c016b234`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1458,7 +1698,7 @@ const columns: DataTableColumn<TrendingCoin>[] = [
 						width={36}
 						height={36}
 					/>
-					<p>{item.name}</p>
+					<p className='text-sm'>{item.name}</p>
 				</Link>
 			)
 		},
@@ -1531,6 +1771,239 @@ const TrendingCoins = async () => {
 }
 
 export default TrendingCoins
+
+```
+
+---
+
+### <a id="📄-components-ui-button-tsx"></a>📄 `components/ui/button.tsx`
+
+**File Info:**
+- **Size**: 2.17 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `components/ui/button.tsx`
+- **Relative Path**: `components/ui`
+- **Created**: 2026-01-04 08:17:17 (America/Chicago / GMT-06:00)
+- **Modified**: 2026-01-04 08:17:17 (America/Chicago / GMT-06:00)
+- **MD5**: `7e1b8d2215587c9ea334242b2afa4a40`
+- **SHA256**: `5a5c4b8b60a8a80ba7b8b5d0319be2d3c61bfd2ce4fc2a645371dee9f6db0a77`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+        outline:
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost:
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
+        "icon-sm": "size-8",
+        "icon-lg": "size-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot : "button"
+
+  return (
+    <Comp
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants }
+
+```
+
+---
+
+### <a id="📄-components-ui-pagination-tsx"></a>📄 `components/ui/pagination.tsx`
+
+**File Info:**
+- **Size**: 2.65 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `components/ui/pagination.tsx`
+- **Relative Path**: `components/ui`
+- **Created**: 2026-01-04 08:17:17 (America/Chicago / GMT-06:00)
+- **Modified**: 2026-01-04 08:17:17 (America/Chicago / GMT-06:00)
+- **MD5**: `ba23d7233a420983feef894ee045234d`
+- **SHA256**: `374ad135c3d4ff3ec080a0009cd9745cdd0e12faa89d2b0e86074f11e5127fd1`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import * as React from "react"
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+} from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { buttonVariants, type Button } from "@/components/ui/button"
+
+function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
+  return (
+    <nav
+      role="navigation"
+      aria-label="pagination"
+      data-slot="pagination"
+      className={cn("mx-auto flex w-full justify-center", className)}
+      {...props}
+    />
+  )
+}
+
+function PaginationContent({
+  className,
+  ...props
+}: React.ComponentProps<"ul">) {
+  return (
+    <ul
+      data-slot="pagination-content"
+      className={cn("flex flex-row items-center gap-1", className)}
+      {...props}
+    />
+  )
+}
+
+function PaginationItem({ ...props }: React.ComponentProps<"li">) {
+  return <li data-slot="pagination-item" {...props} />
+}
+
+type PaginationLinkProps = {
+  isActive?: boolean
+} & Pick<React.ComponentProps<typeof Button>, "size"> &
+  React.ComponentProps<"a">
+
+function PaginationLink({
+  className,
+  isActive,
+  size = "icon",
+  ...props
+}: PaginationLinkProps) {
+  return (
+    <a
+      aria-current={isActive ? "page" : undefined}
+      data-slot="pagination-link"
+      data-active={isActive}
+      className={cn(
+        buttonVariants({
+          variant: isActive ? "outline" : "ghost",
+          size,
+        }),
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function PaginationPrevious({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) {
+  return (
+    <PaginationLink
+      aria-label="Go to previous page"
+      size="default"
+      className={cn("gap-1 px-2.5 sm:pl-2.5", className)}
+      {...props}
+    >
+      <ChevronLeftIcon />
+      <span className="hidden sm:block">Previous</span>
+    </PaginationLink>
+  )
+}
+
+function PaginationNext({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) {
+  return (
+    <PaginationLink
+      aria-label="Go to next page"
+      size="default"
+      className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
+      {...props}
+    >
+      <span className="hidden sm:block">Next</span>
+      <ChevronRightIcon />
+    </PaginationLink>
+  )
+}
+
+function PaginationEllipsis({
+  className,
+  ...props
+}: React.ComponentProps<"span">) {
+  return (
+    <span
+      aria-hidden
+      data-slot="pagination-ellipsis"
+      className={cn("flex size-9 items-center justify-center", className)}
+      {...props}
+    >
+      <MoreHorizontalIcon className="size-4" />
+      <span className="sr-only">More pages</span>
+    </span>
+  )
+}
+
+export {
+  Pagination,
+  PaginationContent,
+  PaginationLink,
+  PaginationItem,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+}
 
 ```
 
@@ -1683,7 +2156,7 @@ export {
 - **Location**: `components/CandlestickChart.tsx`
 - **Relative Path**: `components`
 - **Created**: 2026-01-02 09:01:39 (America/Chicago / GMT-06:00)
-- **Modified**: 2026-01-02 09:03:25 (America/Chicago / GMT-06:00)
+- **Modified**: 2026-01-02 09:08:37 (America/Chicago / GMT-06:00)
 - **MD5**: `c735a70cfe6dd1d7591de23be31e8085`
 - **SHA256**: `e429f619156b8e33a7b0eaf13c2adc6d408bbc6380df870d04850e4666916e4b`
 - **Encoding**: ASCII
@@ -1814,6 +2287,107 @@ const CandlestickChart = ({
 }
 
 export default CandlestickChart
+
+```
+
+---
+
+### <a id="📄-components-coinspagination-tsx"></a>📄 `components/CoinsPagination.tsx`
+
+**File Info:**
+- **Size**: 2.09 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `components/CoinsPagination.tsx`
+- **Relative Path**: `components`
+- **Created**: 2026-01-04 08:20:10 (America/Chicago / GMT-06:00)
+- **Modified**: 2026-01-04 08:45:40 (America/Chicago / GMT-06:00)
+- **MD5**: `6d1f26ad38d360e3bc7d677b4ad9be1f`
+- **SHA256**: `73349e0ca1e39ee4ead8f11b9f162f5d65a36cc25bdda4d445ff9ab6b013c77f`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useRouter } from 'next/navigation'
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+	PaginationLink,
+	PaginationNext,
+	PaginationPrevious,
+} from '@/components/ui/pagination'
+import { buildPageNumbers, cn, ELLIPSIS } from '@/lib/utils'
+
+const CoinsPagination = ({
+	currentPage,
+	totalPages,
+	hasMorePages,
+}: Pagination) => {
+	const router = useRouter()
+
+	const handlePageChange = (page: number) => {
+		router.push(`/coins?page=${page}`)
+	}
+
+	const pageNumbers = buildPageNumbers(currentPage, totalPages)
+	const isLastPage = !hasMorePages || currentPage === totalPages
+
+	return (
+		<Pagination id='coins-pagination'>
+			<PaginationContent className='pagination-content'>
+				<PaginationItem className='pagination-control prev'>
+					<PaginationPrevious
+						onClick={() =>
+							currentPage > 1 && handlePageChange(currentPage - 1)
+						}
+						className={
+							currentPage === 1
+								? 'control-disabled'
+								: 'control-button'
+						}
+					/>
+				</PaginationItem>
+
+				<div className='pagination-pages'>
+					{pageNumbers.map((page, index) => (
+						<PaginationItem key={index}>
+							{page === ELLIPSIS ? (
+								<span className='ellipses'>...</span>
+							) : (
+								<PaginationLink
+                                    onClick={() => handlePageChange(page)}
+                                    className={cn('page-link', {
+                                        'page-link-active': currentPage === page,
+                                    })}
+                                >
+                                    {page}
+                                </PaginationLink>
+							)}
+						</PaginationItem>
+					))}
+				</div>
+
+				<PaginationItem className='pagination-control next'>
+					<PaginationNext
+						onClick={() =>
+							!isLastPage && handlePageChange(currentPage + 1)
+						}
+						className={
+							isLastPage ? 'control-disabled' : 'control-button'
+						}
+					/>
+				</PaginationItem>
+			</PaginationContent>
+		</Pagination>
+	)
+}
+
+export default CoinsPagination
 
 ```
 
@@ -2447,15 +3021,15 @@ export default nextConfig;
 ### <a id="📄-package-lock-json"></a>📄 `package-lock.json`
 
 **File Info:**
-- **Size**: 221.41 KB
+- **Size**: 222.62 KB
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package-lock.json`
 - **Relative Path**: `root`
 - **Created**: 2025-12-28 09:39:40 (America/Chicago / GMT-06:00)
-- **Modified**: 2025-12-31 23:06:16 (America/Chicago / GMT-06:00)
-- **MD5**: `8c966e86635a9582a13d9e63d47728a4`
-- **SHA256**: `2ea2339d816b3800c98ea9dafb91f5e19991deef826ae552e8f7d4e3316feaf6`
+- **Modified**: 2026-01-04 08:17:17 (America/Chicago / GMT-06:00)
+- **MD5**: `6a24956416d6ff9cd89b9cc0fce8810d`
+- **SHA256**: `aef58f7cfa9c74ccd831dae723accd4f37afbe3a283f364cad97e388ce003bf6`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2471,6 +3045,7 @@ export default nextConfig;
       "name": "cryptoscreen",
       "version": "0.1.0",
       "dependencies": {
+        "@radix-ui/react-slot": "^1.2.4",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "lightweight-charts": "^5.1.0",
@@ -3617,6 +4192,37 @@ export default nextConfig;
         "node": ">=12.4.0"
       }
     },
+    "node_modules/@radix-ui/react-compose-refs": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/@radix-ui/react-compose-refs/-/react-compose-refs-1.1.2.tgz",
+      "integrity": "sha512-z4eqJvfiNnFMHIIvXP3CY57y2WJs5g2v3X0zm9mEJkrkNv4rDxu+sg9Jh8EkXyeqBkB7SOcboo9dMVqhyrACIg==",
+      "peerDependencies": {
+        "@types/react": "*",
+        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@radix-ui/react-slot": {
+      "version": "1.2.4",
+      "resolved": "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.2.4.tgz",
+      "integrity": "sha512-Jl+bCv8HxKnlTLVrcDE8zTMJ09R9/ukw4qBs/oZClOfoQk/cOTbDn+NceXfV7j09YPVQUryJPHurafcSg6EVKA==",
+      "dependencies": {
+        "@radix-ui/react-compose-refs": "1.1.2"
+      },
+      "peerDependencies": {
+        "@types/react": "*",
+        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        }
+      }
+    },
     "node_modules/@rtsao/scc": {
       "version": "1.1.0",
       "resolved": "https://registry.npmjs.org/@rtsao/scc/-/scc-1.1.0.tgz",
@@ -3928,7 +4534,7 @@ export default nextConfig;
       "version": "19.2.7",
       "resolved": "https://registry.npmjs.org/@types/react/-/react-19.2.7.tgz",
       "integrity": "sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==",
-      "dev": true,
+      "devOptional": true,
       "dependencies": {
         "csstype": "^3.2.2"
       }
@@ -4946,7 +5552,7 @@ export default nextConfig;
       "version": "3.2.3",
       "resolved": "https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz",
       "integrity": "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==",
-      "dev": true
+      "devOptional": true
     },
     "node_modules/damerau-levenshtein": {
       "version": "1.0.8",
@@ -8693,15 +9299,15 @@ export default nextConfig;
 ### <a id="📄-package-json"></a>📄 `package.json`
 
 **File Info:**
-- **Size**: 793 B
+- **Size**: 832 B
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package.json`
 - **Relative Path**: `root`
 - **Created**: 2025-12-28 09:39:18 (America/Chicago / GMT-06:00)
-- **Modified**: 2025-12-31 23:06:16 (America/Chicago / GMT-06:00)
-- **MD5**: `0c9e9b48af3a0bf632b484c9f674e9b2`
-- **SHA256**: `a10d33189f2ccf2b4599289a43c014755bc1482205258eace0421a8bb9400260`
+- **Modified**: 2026-01-04 08:17:17 (America/Chicago / GMT-06:00)
+- **MD5**: `c42d451b07c49b909476386e539c24f8`
+- **SHA256**: `d90b61503ecf685624e6418cb94efdf323bedb6b1fd62b08130e9b68373c57b3`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -8718,6 +9324,7 @@ export default nextConfig;
     "lint": "eslint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lightweight-charts": "^5.1.0",
@@ -9201,15 +9808,15 @@ interface PoolData {
 ### <a id="📄-zznotes-txt"></a>📄 `ZZNotes.txt`
 
 **File Info:**
-- **Size**: 124 B
+- **Size**: 251 B
 - **Extension**: `.txt`
 - **Language**: `text`
 - **Location**: `ZZNotes.txt`
 - **Relative Path**: `root`
 - **Created**: 2025-12-28 09:49:09 (America/Chicago / GMT-06:00)
-- **Modified**: 2025-12-31 08:29:32 (America/Chicago / GMT-06:00)
-- **MD5**: `c2be52a16448203cac179d7285e5a1bf`
-- **SHA256**: `273efd2b7a8c5b299ab68275924fc5c153bbd67d28114b0146c9c3758bd380d8`
+- **Modified**: 2026-01-03 09:12:38 (America/Chicago / GMT-06:00)
+- **MD5**: `1de153a29fb8e6ca08d9f7e7368ea4f9`
+- **SHA256**: `f9a74cc3ab46b24da7a66f7462f1f297ac1c2f0822c678b104ad03b43bcd9e8a`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -9218,6 +9825,8 @@ interface PoolData {
 https://www.youtube.com/watch?v=-vsh_GxC-vg&t=403s
 1.08.55
 
+https://www.youtube-nocookie.com/embed/-vsh_GxC-vg?playlist=-vsh_GxC-vg&autoplay=1&iv_load_policy=3&loop=1&start=403
+2.03.16
 
 Coingecko
 dbesqdev
